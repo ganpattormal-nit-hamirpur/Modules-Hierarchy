@@ -1,0 +1,4 @@
+module top[_module(input a,b,output out);
+//connecting modules port by name.
+mod_a m1(.in1(a),.in2(b),.out(out));
+endmodule
