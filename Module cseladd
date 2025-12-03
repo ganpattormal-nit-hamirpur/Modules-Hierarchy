@@ -1,0 +1,26 @@
+module top_module(
+    input [31:0] a,
+    input [31:0] b,
+    output [31:0] sum
+);
+   wire [15:0] i0,i1;
+    wire sel,k1,k2;
+    wire [15:0] w1,w2,w3,w4,w5;
+    wire [31:16] w6;
+    assign w1=a[15:0];
+    assign w2=a[31:16];
+    assign w3=b[15:0];
+    assign w4=b[31:16];
+    add16 a1(.a(w1),.b(w3),.cin(0),.sum(w5),.cout(sel));
+    add16 a2(.a(w2),.b(w4),.cin(0),.sum(i0),.cout(k1));
+    add16 a3(.a(w2),.b(w4),.cin(1),.sum(i1),.cout(k2));
+    always @(*)begin
+        if(sel==1'b0)
+            w6=i0;
+        else
+            w6=i1;
+    end
+    assign sum={w6,w5};
+    
+
+endmodule
